@@ -38,7 +38,7 @@ This project examines the effectiveness of term deposit marketing campaigns cond
 ### Customer Segmentation
 - Identified key segments of the customer base that are more likely to invest in term deposits, enabling targeted marketing efforts.
 
-# Conclusion and Next Steps
+## Conclusion and Next Steps
 
 Through our comprehensive analysis, we have uncovered key insights that can significantly inform the bank's marketing strategies for term deposit campaigns. Our exploration spanned from initial data assessments to complex statistical analyses and predictive modeling, each step revealing more about the characteristics and behaviors of potential buyers.
 
