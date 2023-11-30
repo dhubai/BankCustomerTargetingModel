@@ -20,6 +20,7 @@ The dataset used for this project comes from a marketing campaign by a European 
 - **Adjusting Class Weights**: Increasing the weight of the minority class to further mitigate class imbalance.
 - **Hyperparameter Tuning**: Using GridSearchCV and RandomizedSearchCV for fine-tuning the models' parameters.
 - **Cross-Validation for Robustness**: Performing 5-fold cross-validation to ensure the models' robustness and generalizability.
+- **Probability Threshold**: We utilized the predict_proba function in XGBoost to find the optimal probability threshold for maximizing the F1 score.
 
 ### Statistical Analysis
 - **Significance Testing**: Conducting t-tests for numerical features and chi-square tests for categorical features to understand their influence on the target variable.
