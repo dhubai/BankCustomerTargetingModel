@@ -1,42 +1,91 @@
-# Term Deposit Marketing Analysis
+# Bank Customer Targeting Model
+### Optimizing Marketing Strategies with Predictive Analytics
 
-## Background
-This project is developed for a startup specializing in machine learning solutions for the European banking sector. Focus areas include fraud detection, sentiment classification, and customer intention prediction. The primary objective is to create a machine learning system that analyzes call center data to enhance the success rate of product promotion calls, particularly focusing on term deposit subscriptions.
+## Project Overview
+
+This project aims to develop a robust machine learning model to predict customer subscriptions to term deposits using call center data from a European banking institution. The goal is to enhance the success rate of marketing calls by identifying which customers are more likely to subscribe to the bank's investment products. This solution will help the bank prioritize customers for follow-up calls, optimize marketing strategies, and ultimately improve campaign performance.
 
 ## Data Description
-The dataset used for this project comes from a marketing campaign by a European bank, involving phone calls to customers regarding term deposit subscriptions. It encompasses various attributes like age, job, marital status, education, credit status, average yearly balance, and loan information. The key outcome variable is the customer's decision on the term deposit subscription.
 
-## Analytical Process and Methodology
+The dataset used for this project is derived from direct marketing efforts of a European bank. The data includes information about customers' demographic characteristics, past interactions with the bank, and outcomes of previous marketing campaigns. Key attributes include:
 
-### Data Preparation and Exploration
-- **Initial Steps**: Loading the dataset and generating summary statistics to understand the overall structure and attributes of the data.
-- **Ensuring Data Quality**: Checking for missing values and duplicates to ensure the integrity and reliability of the data.
-- **Exploratory Data Analysis**: Utilizing histograms and bar charts to explore the distributions of both numerical and categorical features.
-- **Encoding Categorical Variables**: Transforming categorical data using OneHot and Label encoding, making it suitable for machine learning algorithms.
+- **Age**: Age of the customer.
+- **Job**: Type of job.
+- **Marital**: Marital status.
+- **Education**: Education level.
+- **Default**: Whether the customer has a credit in default.
+- **Balance**: Average yearly balance in euros.
+- **Housing**: Whether the customer has a housing loan.
+- **Loan**: Whether the customer has a personal loan.
+- **Contact**: Contact communication type.
+- **Duration**: Duration of the last contact in seconds.
+- **Campaign**: Number of contacts during the current campaign.
 
-### Model Training and Evaluation
-- **Model Selection and Training**: Training Decision Tree, Random Forest, and XGBoost models and evaluating their performance based on accuracy, ROC-AUC score, and classification reports.
-- **Addressing Class Imbalance**: Employing SMOTE to balance the dataset and retraining the models to avoid biased predictions.
-- **Adjusting Class Weights**: Increasing the weight of the minority class to further mitigate class imbalance.
-- **Hyperparameter Tuning**: Using GridSearchCV and RandomizedSearchCV for fine-tuning the models' parameters.
-- **Cross-Validation for Robustness**: Performing 5-fold cross-validation to ensure the models' robustness and generalizability.
-- **Probability Threshold**: We utilized the predict_proba function in XGBoost to find the optimal probability threshold for maximizing the F1 score.
+**Target Variable:**
+- **Y**: Whether the client subscribed to a term deposit (Yes/No).
 
-### Statistical Analysis
-- **Significance Testing**: Conducting t-tests for numerical features and chi-square tests for categorical features to understand their influence on the target variable.
 
-### Data Clustering and Feature Importance
-- **Scaling and Clustering**: Applying K-Means clustering after scaling the data to identify distinct customer segments.
-- **Feature Importance Analysis**: Using XGBoost to determine the most influential features for predicting term deposit subscriptions.
+## Project Goals
 
-### Challenges and Solutions
-- **Overcoming Class Imbalance**: Tackling class imbalance using SMOTE and class weight adjustments.
-- **Model Selection and Optimization**: Experimenting with different models and optimizing them using cross-validation and grid search techniques.
-- **Interpreting Complex Data**: Gaining valuable insights into the dataset through comprehensive EDA, statistical tests, and feature importance analysis.
-- **Ensuring Model Generalizability**: Using cross-validation and a variety of models to build a model that generalizes well to unseen data.
+- **Primary Goal**: Predict whether a customer will subscribe to a term deposit (Yes/No).
+- **Success Metric**: Achieve an accuracy score of 81% or above using 5-fold cross-validation.
+- **Secondary Goals**:
+  - Identify customer segments most likely to subscribe.
+  - Determine which features most significantly influence the likelihood of subscription.
 
-### Conclusions
-- **XGBoost's Superior Performance**: Highlighting XGBoost as the most effective model for this complex dataset.
-- **Strategic Marketing Recommendations**: Recommending strategies based on the analysis, such as focusing on specific months, improving call quality, and targeting financially stable customers.
-- **Targeted Marketing through Customer Segmentation**: Utilizing clustering results for more targeted and efficient marketing strategies.
----
+## Models and Algorithms Used
+
+The following machine learning models and algorithms were employed to achieve the project's objectives:
+
+1. **Decision Tree Classifier**: A tree-based model that splits data into branches to make predictions based on feature values.
+2. **Random Forest Classifier**: An ensemble method that builds multiple decision trees and merges them to improve prediction accuracy and control overfitting.
+3. **XGBoost Classifier**: An optimized gradient boosting algorithm that builds trees sequentially to reduce errors and improve performance.
+4. **Synthetic Minority Over-sampling Technique (SMOTE)**: A method for handling class imbalance by generating synthetic samples for the minority class.
+5. **K-Means Clustering**: An unsupervised learning algorithm used to segment customers into distinct groups based on their attributes.
+6. **Statistical Tests (T-tests and Chi-square tests)**: Statistical methods used to identify significant numerical and categorical features that impact customer decisions.
+
+## Methodology
+
+1. **Data Preprocessing**: 
+   - Handled missing values, encoded categorical variables, and scaled numerical features.
+2. **Exploratory Data Analysis (EDA)**:
+   - Conducted statistical tests (T-tests, Chi-square) to identify significant features.
+   - Visualized feature distributions and correlations.
+3. **Modeling**:
+   - Trained and evaluated multiple machine learning models (Decision Tree, Random Forest, XGBoost).
+   - Performed hyperparameter tuning using GridSearchCV and RandomizedSearchCV.
+   - Applied SMOTE to handle class imbalance.
+4. **Feature Importance and Segmentation**:
+   - Leveraged XGBoost for feature importance analysis.
+   - Applied K-Means clustering to identify customer segments for targeted marketing.
+
+## Results
+
+- **Model Performance**:
+  - **Decision Tree**: Accuracy = 91.79%, ROC-AUC = 0.6791
+  - **Random Forest**: Accuracy = 93.25%, ROC-AUC = 0.6010
+  - **XGBoost**: Accuracy = 92.21%, ROC-AUC = 0.8141 (Best Model)
+
+- **Key Insights**:
+  - **XGBoost** outperformed other models in distinguishing between classes, particularly due to its superior ROC-AUC and F1 scores.
+  - **Optimal Threshold**: A threshold of 0.58 for the XGBoost model maximized the F1 score to 0.5751.
+
+- **Statistical Analysis**:
+  - Significant predictors include **Age**, **Balance**, **Duration of Call**, **Job Type**, **Marital Status**, **Education**, **Housing Loan**, and **Contact Method**.
+
+## Insights and Recommendations
+
+- **Target Segments**:
+  - **Cluster 1**: High engagement customers with lower balances, typically contacted early in the month.
+  - **Cluster 2**: Customers with high balances and moderate engagement, contacted later in the month.
+
+- **Marketing Strategy**:
+  - Focus efforts on Cluster 1 for their engagement and Cluster 2 for their financial readiness to invest.
+  - Align marketing campaigns with key months (March, August, July) to optimize customer reach.
+  - Emphasize call quality and length, as longer calls positively impact subscription rates.
+
+## Future Work
+
+- Incorporate additional data sources (e.g., online behavior, customer feedback).
+- Explore more advanced ensemble techniques or deep learning models.
+- Develop a real-time scoring system to prioritize customer calls dynamically.
